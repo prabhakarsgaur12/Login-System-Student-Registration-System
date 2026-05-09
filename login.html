@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Login Portal</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+body{
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
+background-size:400% 400%;
+animation:gradient 15s ease infinite;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.glass-panel{
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.2);
+box-shadow:0 8px 32px rgba(31,38,135,0.37);
+}
+
+.input-group{position:relative;}
+
+.input-icon{
+position:absolute;
+left:12px;
+top:50%;
+transform:translateY(-50%);
+color:#6b7280;
+}
+
+.input-field{padding-left:40px!important;}
+
+.password-toggle{
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#6b7280;
+}
+
+</style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen p-4">
+
+<div class="container" id="container">
+
+<!-- SIGNUP -->
+
+<div class="sign-up-container">
+
+<form action="login" method="post"
+class="glass-panel p-8 rounded-2xl w-full max-w-md mx-auto">
+
+<input type="hidden" name="action" value="signup">
+
+<h2 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h2>
+
+<div class="mb-4">
+
+<label class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+
+<div class="input-group">
+
+<i class="fas fa-user input-icon"></i>
+
+<input name="name"
+class="input-field shadow appearance-none border rounded w-full py-2 px-3"
+id="signup-name"
+type="text"
+placeholder="John Doe"
+required>
+
+</div>
+</div>
+
+
+<div class="mb-4">
+
+<label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+
+<div class="input-group">
+
+<i class="fas fa-envelope input-icon"></i>
+
+<input name="email"
+class="input-field shadow appearance-none border rounded w-full py-2 px-3"
+id="signup-email"
+type="email"
+placeholder="john@example.com"
+required>
+
+</div>
+</div>
+
+
+<div class="mb-6">
+
+<label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+
+<div class="input-group">
+
+<i class="fas fa-lock input-icon"></i>
+
+<input name="password"
+class="input-field shadow appearance-none border rounded w-full py-2 px-3"
+id="signup-password"
+type="password"
+placeholder="********"
+required>
+
+<i class="fas fa-eye password-toggle"
+onclick="togglePassword('signup-password',this)"></i>
+
+</div>
+</div>
+
+
+<button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded">
+Sign Up
+</button>
+
+<div class="mt-6 text-center">
+
+<p class="text-sm text-gray-600 mb-2">Or sign up with</p>
+
+<div class="flex justify-center space-x-4">
+
+<a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=794978699868-tft1m5dq00bsvd952msamnuh14na3b6h.apps.googleusercontent.com&redirect_uri=http://localhost:8080/project2/login&response_type=code&scope=email%20profile"
+class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-red-500 hover:text-white transition">
+<i class="fab fa-google"></i>
+
+</a>
+
+<button class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-blue-600 hover:text-white transition">
+
+<i class="fab fa-facebook-f"></i>
+
+</button>
+
+</div>
+</div>
+
+</form>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div class="sign-in-container">
+
+<form action="login" method="post"
+class="glass-panel p-8 rounded-2xl w-full max-w-md mx-auto"
+onsubmit="handleForm(event,'login')">
+
+<input type="hidden" name="action" value="login">
+
+<h2 class="text-3xl font-bold text-gray-800 mb-2">Sign in</h2>
+
+<p class="text-gray-500 text-sm mb-6">Welcome back to your dashboard</p>
+
+
+<div class="mb-4">
+
+<label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+
+<div class="input-group">
+
+<i class="fas fa-envelope input-icon"></i>
+
+<input name="email"
+class="input-field shadow appearance-none border rounded w-full py-2 px-3"
+id="login-email"
+type="email"
+placeholder="john@example.com"
+required>
+
+</div>
+</div>
+
+
+<div class="mb-6">
+
+<label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+
+<div class="input-group">
+
+<i class="fas fa-lock input-icon"></i>
+
+<input name="password"
+class="input-field shadow appearance-none border rounded w-full py-2 px-3"
+id="login-password"
+type="password"
+placeholder="********"
+required>
+
+<i class="fas fa-eye password-toggle"
+onclick="togglePassword('login-password',this)"></i>
+
+</div>
+</div>
+<button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded">
+Sign In
+</button>
+
+<a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=794978699868-tft1m5dq00bsvd952msamnuh14na3b6h.apps.googleusercontent.com&redirect_uri=http://localhost:8080/project2/login&response_type=code&scope=email%20profile"
+class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-red-500 hover:text-white transition">
+
+<i class="fab fa-google"></i>
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script>
+
+function togglePassword(inputId,icon){
+
+const input=document.getElementById(inputId);
+
+if(input.type==="password"){
+input.type="text";
+icon.classList.remove("fa-eye");
+icon.classList.add("fa-eye-slash");
+}else{
+input.type="password";
+icon.classList.remove("fa-eye-slash");
+icon.classList.add("fa-eye");
+}
+
+}
+
+/* ADD THIS FUNCTION BELOW */
+
+function handleForm(event,type){
+console.log(type + " form submitted");
+}
+
+</script>
+
+</body>
+</html>
