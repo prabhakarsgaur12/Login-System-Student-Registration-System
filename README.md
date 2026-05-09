@@ -1,8 +1,8 @@
-# User-Registration-System-Java-Servlet
+# Login System & Student Registration System
 
-# User Registration System
+# Student Registration System
 
-This is a web-based user registration system developed using Java Servlet, JDBC, MySQL, and HTML.
+This is a web-based Student registration system developed using Java Servlet, JDBC, MySQL, and HTML.
 
 ## Technologies Used
 - Java Servlet
@@ -15,3 +15,5 @@ This is a web-based user registration system developed using Java Servlet, JDBC,
 - User registration form
 - Store user data in MySQL database
 - Server-side processing using Java Servlet
+- Sign Up For Google Auth
+- login with Gmail
